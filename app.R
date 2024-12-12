@@ -12,6 +12,11 @@ library(bslib)
 library(bsicons)
 library(plotly)
 library(lubridate)
+library(tidyverse)
+library(ggthemes)
+library(readxl)
+library(hrbrthemes)
+library(scales)
 
 datos_total <- read_excel("G:/Mi unidad/CURSOS/R y Shiny/datos_sipa.xlsx", sheet = "totales")
 datos_total$fecha <- as.Date(datos_total$fecha, format = "%d/%m/%Y")
@@ -98,7 +103,9 @@ server <- function(input, output) {
       labs(x = "Periodo", y = "Asalariados registrados (en miles)") +
       theme_minimal()
       
-    ggplotly(plot_lp)
+    ggplotly(plot_lp) %>% 
+      layout(plot_bgcolor = "rgba(0,0,0,0)",
+             paper_bgcolor = "rgba(0,0,0,0)") 
   }
   )
   
@@ -116,7 +123,9 @@ server <- function(input, output) {
       theme_minimal() +
       theme(axis.text.x = element_text(angle = 45, hjust = 1))
     
-    ggplotly(plot_var)
+    ggplotly(plot_var) %>% 
+      layout(plot_bgcolor = "rgba(0,0,0,0)",
+             paper_bgcolor = "rgba(0,0,0,0)") 
     
   })
   
